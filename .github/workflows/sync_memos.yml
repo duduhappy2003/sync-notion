@@ -1,0 +1,26 @@
+name: Sync Memos to Notion
+on:
+  # 可选触发时机，比如推送到 main 分支时触发，也可改成 schedule 定时触发（如每天凌晨同步）
+  push:
+    branches:
+      - main
+  # 定时触发示例（Cron 表达式，这里是每天 0 点同步，可根据需求调整）
+  schedule:
+    - cron: '0 0 * * *'  
+jobs:
+  sync:
+    runs-on: ubuntu-latest  # 使用 GitHub 托管的 Ubuntu 运行环境
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4  # 拉取仓库代码到运行环境
+      - name: Set up Python
+        uses: actions/setup-python@v5  # 配置 Python 环境
+        with:
+          python-version: 3.8  # 指定 Python 版本，3.8、3.10 等都行
+      - name: Run sync script
+        run: |
+          python3 ./main.py sync_memos "${{ secrets.NOTION_TOKEN }}" "${{ secrets.DATABASE_ID }}" "${{ secrets.MEMOS_TOKEN }}"
+        env:
+          # 若代码里依赖这些 Memos 配置，可通过环境变量传入（根据实际代码逻辑调整）
+          MEMOS_HOST: http://127.0.0.1:8081  # 替换成你的 Memos 实际地址
+          MEMOS_USERNAME: memos-demo  # 替换成你的 Memos 用户名
