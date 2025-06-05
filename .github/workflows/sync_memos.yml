@@ -21,6 +21,6 @@ jobs:
         run: |
           python3 ./main.py sync_memos "${{ secrets.NOTION_TOKEN }}" "${{ secrets.DATABASE_ID }}" "${{ secrets.MEMOS_TOKEN }}"
         env:
-          # 若代码里依赖这些 Memos 配置，可通过环境变量传入（根据实际代码逻辑调整）
-          MEMOS_HOST: http://127.0.0.1:8081  # 替换成你的 Memos 实际地址
+          MEMOS_HOST: ${{ secrets.MEMOS_HOST }}  # 从 Secrets 获取 Memos 地址
+          MEMOS_USERNAME: ${{ secrets.MEMOS_USERNAME }}  # 从 Secrets 获取 Memos 用户名
           MEMOS_USERNAME: memos-demo  # 替换成你的 Memos 用户名
