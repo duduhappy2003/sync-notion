@@ -24,4 +24,3 @@ jobs:
         env:
           MEMOS_HOST: ${{ secrets.MEMOS_HOST }}  # 从 Secrets 获取 Memos 地址
           MEMOS_USERNAME: ${{ secrets.MEMOS_USERNAME }}  # 从 Secrets 获取 Memos 用户名
-          MEMOS_USERNAME: memos-demo  # 替换成你的 Memos 用户名
