@@ -7,7 +7,7 @@ on:
   # 定时触发示例（Cron 表达式，这里是每天 0 点同步，可根据需求调整）
   schedule:
     - cron: '0 0 * * *'  
-    workflow_dispatch:  # 新增这行，支持手动触发
+  workflow_dispatch:  # 新增这行，支持手动触发
 jobs:
   sync:
     runs-on: ubuntu-latest  # 使用 GitHub 托管的 Ubuntu 运行环境
