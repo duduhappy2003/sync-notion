@@ -104,7 +104,7 @@ def _memos_list(offset: int, limit: int, host: str, create_user: str, memos_toke
     }
     result = []
 
-    url = f'{host}/api/v1/memo?'.format(host=host)
+    url = f'{host}/api/v1/memos?'.format(host=host)
     params = {
         'limit': limit,
         'offset': offset,
